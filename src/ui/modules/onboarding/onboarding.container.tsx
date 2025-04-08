@@ -6,6 +6,7 @@ import { ProfilStep } from "./components/steps/profil-step/profil-step";
 import { AvatarStep } from "./components/steps/avatar-step/avatar-step";
 import { FinalStep } from "./components/steps/final-step/final-step";
 import { QuestionnaireStep } from "./components/steps/questionnaire-step/questionnaire-step";
+import { OnboardingProvider } from "./context/onboarding-context";
 
 export const OnboardingContainer = () => {
   const [currentStep, setCurrentStep] = useState<number>(1);
@@ -52,28 +53,23 @@ export const OnboardingContainer = () => {
   };
 
   const isFirstStep = () => {
-    if (currentStep === 1) {
-      return true;
-    }
-    return false;
-  };
-  
-  const isFinalStep = () => {
-    if (currentStep === stepsList.length) {
-      return true;
-    }
-    return false;
+    return currentStep === 1;
   };
 
-  
-return ( // Ajoutez la parenthèse ouvrante ici
-    <OnboardingView
-      getCurrentStep={getCurrentStep}
-      next={next}
-      prev={prev}
-      isFirstStep={isFirstStep}
-      isFinalStep={isFinalStep}
-      stepsList={stepsList}
-    />
+  const isFinalStep = () => {
+    return currentStep === stepsList.length;
+  };
+
+  return (
+    <OnboardingProvider>
+      <OnboardingView
+        stepsList={stepsList}
+        getCurrentStep={getCurrentStep}
+        next={next}
+        prev={prev}
+        isFirstStep={isFirstStep}
+        isFinalStep={isFinalStep}
+      />
+    </OnboardingProvider>
   );
 };

@@ -31,7 +31,7 @@ export const QuestionnaireStep = ({
     "5000", "5000-20000", "20000-100000", 
     "100000-500000", "500000-1000000", "+1000000"
   ]);
-
+  
   const {
     handleSubmit,
     register,
@@ -132,7 +132,7 @@ export const QuestionnaireStep = ({
 
       if (error) throw error;
 
-      reset(formData);
+        reset(formData);
       next();
     } catch (error: any) {
       console.error("Erreur lors de la mise à jour:", error);

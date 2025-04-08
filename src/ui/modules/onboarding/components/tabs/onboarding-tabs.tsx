@@ -8,8 +8,9 @@ interface Props {
   getCurrentStep: () => onboardingStepsListInterface | undefined
 }
 export const OnboardingTabs = ({ tabs, getCurrentStep }: Props) => {
-    console.log("tabs", tabs);
-    console.log("getCurrentStep", getCurrentStep());
+    const currentStep = getCurrentStep();
+    if (!currentStep) return null;
+    
     return (
       <div className="relative inline-block">
         <div className="flex items-center space-x-6">
@@ -20,10 +21,9 @@ export const OnboardingTabs = ({ tabs, getCurrentStep }: Props) => {
               <div
                 key={tab.id}
                 className={clsx(
-                  getCurrentStep && 
-                  getCurrentStep()?.id === tab.id
-                  ? "border-primary"
-                  : "border-gray-400",
+                  currentStep.id === tab.id
+                    ? "border-primary"
+                    : "border-gray-400",
                   "relative z-10 py-2.5 border-b-[2px]"
                 )}
               >
@@ -31,11 +31,10 @@ export const OnboardingTabs = ({ tabs, getCurrentStep }: Props) => {
                   variant="caption3"
                   weight="medium"
                   theme={
-                    getCurrentStep && 
-                    getCurrentStep()?.id === tab.id
-                    ? "primary"
-                    : "gray-600"
-                }
+                    currentStep.id === tab.id
+                      ? "primary"
+                      : "gray-600"
+                  }
                 >
                   {tab.label}
                 </Typography>

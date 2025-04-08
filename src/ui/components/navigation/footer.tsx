@@ -19,7 +19,7 @@ export const Footer = () => {
     ));
 
     return (
-        <div className="py-48 bg-gray">
+        <div className="py-8 bg-green">
             <Container className="flex justify-between pt-16">
                 <div className="flex flex-col items-center gap-1">
                     <Typography variant="caption1" theme="white" weight="medium">

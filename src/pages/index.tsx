@@ -5,7 +5,7 @@ export default function Home() {
     return (
         <> 
             <Seo title="ProjetX" description="Description...." />
-            <Layout isDisplayBreadcrumbs={true}>
+            <Layout isDisplayBreadcrumbs={false}>
                 <LandingPageContainer />
             </Layout>
         </>

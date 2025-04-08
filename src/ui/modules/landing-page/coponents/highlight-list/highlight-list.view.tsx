@@ -10,7 +10,7 @@ export const HighlightListview = () => {
         <Container className="py-24 space-y-10">
             <div className="flex justify-center gap-24">
                 <div className="w-[520px] h-[350px] relative mt-10">
-                    <Image fill src="/assets/svg/cake.svg" alt="illustration" />
+                    <Image fill src="/assets/images/49577.jpg" alt="illustration" />
                 </div>
                 <div className="max-w-md space-y-7">
                     <Typography variant="h3" component="h2">
@@ -31,7 +31,7 @@ export const HighlightListview = () => {
             </div>
             <div className="flex flex-row-reverse justify-center gap-24">
                 <div className="w-[520px] h-[350px] relative mt-10 gap-24" >
-                    <Image fill src="/assets/svg/top.svg" alt="illustration" />
+                    <Image fill src="/assets/images/recompense.jpg" alt="illustration" />
                 </div>
                 <div className="max-w-md space-y-7">
                     <Typography variant="h3" component="h2">

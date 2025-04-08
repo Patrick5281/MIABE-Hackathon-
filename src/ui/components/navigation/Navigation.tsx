@@ -40,8 +40,7 @@ export const Navigation = ({
         <div className="flex items-center gap-7">
             <Typography variant="caption3" component="div"  className="flex items-center gap-7">
                   <ActiveLink href="/design-system">Design System</ActiveLink> 
-                  <Link href="/projets">Projets</Link> 
-                  <Link href="/formations">Formations</Link> 
+                  <Link href="/formations">Pourquoi recycler ?</Link> 
                   <Link href="/contact">Contact</Link> 
             </Typography>
             

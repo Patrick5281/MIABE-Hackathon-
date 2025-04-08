@@ -32,10 +32,10 @@ return (
                     Rejoins le groupe d'aide
             </Button>
         </div>
-        <div className="relative w-[600px] h-[600px]">
+        <div className="relative w-[1200px] h-[600px]">
             <Image 
             fill
-            src={"assets/svg/logo-slack.svg"}
+            src={"assets/images/40261.jpg"}
             alt="Goupre slack svg"
             />
         </div>

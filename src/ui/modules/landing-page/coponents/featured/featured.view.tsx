@@ -15,25 +15,25 @@ interface FeaturesListInterface {
 
 const featureData: FeaturesListInterface[] = [
     {
-        imagePath: "assets/svg/diskette.svg",
+        imagePath: "assets/images/tri.png",
         imageAlt: "Illustration",
         title: "Ressources",
         description: "Consulte et partage les ressources pour les devs",
     },
     {
-        imagePath: "assets/svg/joystick.svg",
+        imagePath: "assets/images/medical-waste.png",
         imageAlt: "Illustration",
         title: "Entrainement",
         description: "Entraîne-toi à devenir meilleur et trouve de l'inspiration",
     },
     {
-        imagePath: "assets/svg/loudspeaker.svg",
+        imagePath: "assets/images/recycler.png",
         imageAlt: "Illustration",
         title: "Visibilité",
         description: "Expose tes projets et crée-toi des opportunités",
     },
     {
-        imagePath: "assets/svg/compass.svg",
+        imagePath: "assets/images/points-de-recompense.png",
         imageAlt: "Illustration",
         title: "Relation",
         description: "Connecte-toi avec des devs web et booste ta carrière !",

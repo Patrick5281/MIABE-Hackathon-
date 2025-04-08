@@ -5,19 +5,20 @@ module.exports = {
 		colors: {
 			white: "#ffffff",
 			blue: "#1D4ED8",
+			green: "#012f1f",
 			pink: "#900",
 			primary: {
 				200: "#efeffc",
 				300: "#cfd0f6",
 				400: "#7f81e8",
-				DEFAULT: "#5F62E2",
+				DEFAULT: "#1d8200",
 				600: "#5658CB",
 			},
 			secondary: {
 				200: "#eaf8f4",
 				300: "#bfe9de",
 				400: "#56c4a7",
-				DEFAULT: "#2AB691",
+				DEFAULT: "#01f308",
 				600: "#26a482",
 			},
 			gray: {

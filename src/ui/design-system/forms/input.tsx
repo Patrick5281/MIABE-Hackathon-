@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { Typography } from "../typography/typography";
+import { cn } from "@/lib/utils";
 
 interface Props {
     isLoading?: boolean;
@@ -11,7 +12,11 @@ interface Props {
     id?: string;
     required?: boolean;
     isAutocompleted?: boolean;
-    label?: string
+    label?: string;
+    name?: string;
+    value?: string;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+    className?: string;
 }
 
 export const Input = ({
@@ -25,12 +30,17 @@ export const Input = ({
     required,
     isAutocompleted = false,
     label,
+    name,
+    value,
+    onChange,
+    className
 }: Props) => {
   return (
-    <div className="space-y-2">
+    <div className={cn("space-y-2", className)}>
       {label && (
         <Typography variant="caption4" component="div" theme={errors[id] ? "danger" : "gray-600"} >
           {label}
+          {required && <span className="text-red-500 ml-1">*</span>}
         </Typography>
       )}
       <input
@@ -48,6 +58,9 @@ export const Input = ({
           },
         })}
         autoComplete={isAutocompleted ? "on" : "off"}
+        name={name}
+        value={value}
+        onChange={onChange}
       />
       {errors[id] && (
         <Typography variant="caption4" component="div" theme="danger">

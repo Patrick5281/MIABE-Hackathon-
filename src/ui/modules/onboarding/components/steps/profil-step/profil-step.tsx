@@ -11,6 +11,8 @@ import { useAuth } from "@/Context/AuthUserContext";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
 import { supabaseUpdateDocument } from "@/api/database";
+import { ProfilStepFormEntreprise } from "./profil-step-form-entreprise";
+import { useOnboardingContext } from "../../../context/onboarding-context"; 
 
 export const ProfilStep = ({
   prev,
@@ -31,6 +33,7 @@ export const ProfilStep = ({
         setValue,
         watch
     } = useForm<OnboardingProfilStepFormFieldsType>();
+    const { userType } = useOnboardingContext();
 
     // Surveiller les changements dans authUser.userDocument
     useEffect(() => {
@@ -87,6 +90,12 @@ export const ProfilStep = ({
         }
     };
 
+    const handleNext = (data: any) => {
+        // Ici, vous pouvez traiter les données du formulaire avant de passer à l'étape suivante
+        console.log("Données du formulaire:", data);
+        next?.();
+    };
+
     return (
         <div className="relative h-screen pb-[91px]">
             <div className="h-full overflow-auto">
@@ -114,16 +123,23 @@ export const ProfilStep = ({
                     </div>
                     <div className="flex items-center h-full col-span-6">
                         <div className="flex justify-end w-full">
-                            <ProfileStepForm
-                                form={{
-                                    errors,
-                                    control,
-                                    register,
-                                    handleSubmit,
-                                    onSubmit,
-                                    isLoading,
-                                }}
-                            />
+                            {userType === "particulier" ? (
+                                <ProfileStepForm
+                                    form={{
+                                        errors,
+                                        control,
+                                        register,
+                                        handleSubmit,
+                                        onSubmit,
+                                        isLoading,
+                                    }}
+                                    onNext={handleNext}
+                                />
+                            ) : (
+                                <ProfilStepFormEntreprise
+                                    onNext={handleNext}
+                                />
+                            )}
                         </div>
                     </div>
                 </Container>

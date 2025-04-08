@@ -42,7 +42,7 @@ export const Button = ({
   // Gestion des variantes
   switch (variant) {
     case "accent":
-      variantStyles = "bg-primary hover:bg-primary-400 text-white rounded";
+      variantStyles = "bg-primary hover:bg-secondary text-white rounded";
       break;
     case "secondary":
       variantStyles = "bg-primary-200 hover:bg-primary-300/50 text-primary rounded";
@@ -61,7 +61,7 @@ export const Button = ({
        break;
     case "ico":
       variantStyles = clsx(
-        iconTheme === "accent" && "bg-primary hover:bg-primary-400 text-white rounded-full",
+        iconTheme === "accent" && "bg-primary hover:bg-primary text-white rounded-full",
         iconTheme === "secondary" && "bg-primary-200 hover:bg-primary-300/50 text-primary rounded-full",
         iconTheme === "gray" && "bg-gray-800 hover:bg-gray-600 text-white rounded-full"
       );

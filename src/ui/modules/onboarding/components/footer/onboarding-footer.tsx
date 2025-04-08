@@ -6,22 +6,26 @@ interface Props {
     prev?: () => void;    
     isFirstStep?: () => boolean;    
     isFinalStep?: () => boolean;  
-    isLoading?: boolean;    
+    isLoading?: boolean;
+    disabled?: boolean;
 }
-export const OnboardingFooter =({next,
+
+export const OnboardingFooter =({
+    next,
     prev,
     isFirstStep,
     isFinalStep,
     isLoading,
+    disabled,
 }: Props )=> {
-        let actionButtonTitle: string;
-        if (isFirstStep && isFirstStep()) {
-            actionButtonTitle = "Démarrer"
-        } else if (isFinalStep && isFinalStep()){
-            actionButtonTitle = "Terminer"
-        } else {
-            actionButtonTitle = "Continuer"
-        }
+    let actionButtonTitle: string;
+    if (isFirstStep && isFirstStep()) {
+        actionButtonTitle = "Démarrer"
+    } else if (isFinalStep && isFinalStep()){
+        actionButtonTitle = "Terminer"
+    } else {
+        actionButtonTitle = "Continuer"
+    }
 
     return(
         <div className="absolute bottom-0 left-0 w-full p-5 bg-white border-t border-gray-400">
@@ -44,6 +48,7 @@ export const OnboardingFooter =({next,
                     <Button
                     isLoading={isLoading ? isLoading : false}
                     action={next}
+                    disabled={disabled}
                     >
                         {actionButtonTitle}
                     </Button>

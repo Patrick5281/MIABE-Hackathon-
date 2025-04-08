@@ -32,7 +32,7 @@ export const CurrentCourseCtaView = () => {
                 </div>
                 <Image 
                 fill
-                src={"assets/images/coders-monkeys-course-cta.jpg"}
+                src={"assets/images/tuto1.jpg"}
                 alt=""
                 className="object-cover object-center rounded"
                 />
