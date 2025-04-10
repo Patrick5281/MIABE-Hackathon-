@@ -4,6 +4,8 @@ import { UserAccountNavigation } from "@/ui/components/navigation/user-account-n
 import { Typography } from "@/ui/design-system/typography/typography";
 import { useRouter } from "next/router";
 import TriDechets from "./tri-dechets";
+import { DashboardContainer } from "@/ui/modules/particulier/dashboard/dashboard.container";
+import { WasteDeclaration } from "@/ui/modules/waste-declaration/waste-declaration";
 
 export default function MonEspace() {
   const router = useRouter();
@@ -13,18 +15,18 @@ export default function MonEspace() {
     switch (section) {
       case "tri-dechets":
         return <TriDechets />;
+      case "declarer-dechets":
+        return <WasteDeclaration />;
       case "mon-impact":
         return <MonImpact />;
-      case "recompenses":
-        return <Recompenses />;
       case "statistiques":
         return <Statistiques />;
-      case "collecte-dechets":
-        return <CollecteDechets />;
+      case "parametres":
+        return <Parametres />;
       case "historique":
         return <Historique />;
       default:
-        return <TableauDeBord />;
+        return <DashboardContainer />;
     }
   };
 
@@ -34,11 +36,11 @@ export default function MonEspace() {
         <Typography variant="h1" className="mb-8">
           Mon Espace
         </Typography>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="md:col-span-1">
+        <div className="flex">
+          <div className="w-64 fixed h-[calc(100vh-96px)] overflow-y-auto bg-white shadow-lg">
             <UserAccountNavigation />
           </div>
-          <div className="md:col-span-3">
+          <div className="flex-1 ml-64 p-6">
             <Box>{renderContent()}</Box>
           </div>
         </div>
@@ -48,24 +50,10 @@ export default function MonEspace() {
 }
 
 // Composants temporaires pour les différentes sections
-const TableauDeBord = () => (
-  <div>
-    <Typography variant="h2">Tableau de bord</Typography>
-    <p>Bienvenue sur votre tableau de bord</p>
-  </div>
-);
-
 const MonImpact = () => (
   <div>
     <Typography variant="h2">Mon Impact</Typography>
     <p>Visualisez votre impact environnemental</p>
-  </div>
-);
-
-const Recompenses = () => (
-  <div>
-    <Typography variant="h2">Récompenses</Typography>
-    <p>Découvrez vos récompenses</p>
   </div>
 );
 
@@ -76,10 +64,10 @@ const Statistiques = () => (
   </div>
 );
 
-const CollecteDechets = () => (
+const Parametres = () => (
   <div>
-    <Typography variant="h2">Collecte des Déchets</Typography>
-    <p>Gérez vos collectes de déchets</p>
+    <Typography variant="h2">Paramètres</Typography>
+    <p>Gérez vos paramètres</p>
   </div>
 );
 
