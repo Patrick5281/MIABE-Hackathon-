@@ -1,84 +1,43 @@
-import { firebaseLogOutUser } from "@/api/authentication";
-import { toast } from "react-toastify";
-import { Button } from "@/ui/design-system/button/button";
-import { Typography } from "@/ui/design-system/typography/typography";
-import { ActiveLink } from "./active-link";
-import { Box } from "@/ui/design-system/box/box";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import clsx from 'clsx';
 
 export const UserAccountNavigation = () => {
-  const handleLogoutUser = async () => {
-    const { error } = await firebaseLogOutUser();
-    if (error) {
-      toast.error(error.message);
-      return;
-    }
-    toast.success("A bientôt sur Coders Monkeys");
-  };
+  const router = useRouter();
+  const { section } = router.query;
+
+  const menuItems = [
+    { label: "Tableau de bord", href: "/mon-espace" },
+    { label: "Tri des déchets", href: "/mon-espace?section=tri-dechets" },
+    { label: "Déclarer des déchets", href: "/mon-espace?section=declarer-dechets" },
+    { label: "Mon impact", href: "/mon-espace?section=mon-impact" },
+    { label: "Statistiques", href: "/mon-espace?section=statistiques" },
+    { label: "Paramètres", href: "/mon-espace?section=parametres" },
+  ];
 
   return (
-    <Box className="flex flex-col gap-7">
-      <div className="flex flex-col gap-6">
-        {/* Section Compte */}
-        <div className="flex flex-col gap-3">
-          <Typography variant="caption1" weight="medium" className="text-gray-600">
-            Mon Compte
-          </Typography>
-          <div className="flex flex-col gap-3 pl-2">
-            <Typography variant="caption2" weight="medium">
-              <ActiveLink href="/mon-espace">Tableau de bord</ActiveLink>
-            </Typography>
-            <Typography variant="caption2" weight="medium">
-              <ActiveLink href="/mon-espace?section=tri-dechets">Trier mes déchets</ActiveLink>
-            </Typography>
-            <Typography variant="caption2" weight="medium">
-              <ActiveLink href="/mon-espace?section=declarer-dechets">Déclarer un déchet</ActiveLink>
-            </Typography>
-            <Typography variant="caption2" weight="medium">
-              <ActiveLink href="/mon-espace?section=mon-impact">Mon impact</ActiveLink>
-            </Typography>
-            <Typography variant="caption2" weight="medium">
-              <ActiveLink href="/mon-espace?section=parametres">Paramètres</ActiveLink>
-            </Typography>
-          </div>
-        </div>
-
-        {/* Section Activités */}
-        <div className="flex flex-col gap-3">
-          <Typography variant="caption1" weight="medium" className="text-gray-600">
-            Activités
-          </Typography>
-          <div className="flex flex-col gap-3 pl-2">
-            <Typography variant="caption2" weight="medium">
-              <ActiveLink href="/mon-espace?section=mes-projets">Mes projets</ActiveLink>
-            </Typography>
-            <Typography variant="caption2" weight="medium">
-              <ActiveLink href="/mon-espace?section=statistiques">Statistiques</ActiveLink>
-            </Typography>
-            <Typography variant="caption2" weight="medium">
-              <ActiveLink href="/mon-espace?section=historique">Historique</ActiveLink>
-            </Typography>
-          </div>
-        </div>
-
-        {/* Section Récompenses */}
-        <div className="flex flex-col gap-3">
-          <Typography variant="caption1" weight="medium" className="text-gray-600">
-            Récompenses
-          </Typography>
-          <div className="flex flex-col gap-3 pl-2">
-            <Typography variant="caption2" weight="medium">
-              <ActiveLink href="/mon-espace?section=points">Mes points</ActiveLink>
-            </Typography>
-            <Typography variant="caption2" weight="medium">
-              <ActiveLink href="/mon-espace?section=badges">Mes badges</ActiveLink>
-            </Typography>
-          </div>
-        </div>
-      </div>
-
-      <Button action={handleLogoutUser} variant="danger">
-        Déconnexion
-      </Button>
-    </Box>
+    <nav className="space-y-1">
+      {menuItems.map((item, index) => (
+        <motion.div
+          key={item.href}
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: index * 0.1 }}
+        >
+          <Link
+            href={item.href}
+            className={clsx(
+              "block px-4 py-3 rounded-lg transition-all duration-200",
+              item.href.includes(section as string) || (!section && item.href === "/mon-espace")
+                ? "bg-primary text-white"
+                : "hover:bg-gray-100"
+            )}
+          >
+            {item.label}
+          </Link>
+        </motion.div>
+      ))}
+    </nav>
   );
 };
