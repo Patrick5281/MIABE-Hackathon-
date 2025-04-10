@@ -28,10 +28,19 @@ export default function TriDechets() {
   } = useForm<FormData>({
     defaultValues: {
       categoryId: ''
-    }
+    },
+    mode: 'onChange'
   });
 
   const selectedCategory = watch('categoryId');
+
+  useEffect(() => {
+    console.log('État des variables de contrôle:', {
+      selectedCategory,
+      selectedImage,
+      isLoading
+    });
+  }, [selectedCategory, selectedImage, isLoading]);
 
   useEffect(() => {
     loadCategories();
@@ -69,6 +78,12 @@ export default function TriDechets() {
   };
 
   const onSubmit = async (data: FormData) => {
+    console.log('onSubmit appelé avec:', {
+      data,
+      selectedImage,
+      selectedCategory
+    });
+
     if (!selectedImage) {
       toast.error("Veuillez sélectionner une image");
       return;
@@ -76,12 +91,21 @@ export default function TriDechets() {
 
     setIsLoading(true);
     try {
-      await wasteManagementService.addWaste(data.categoryId, selectedImage);
-      await loadCategoryItems(data.categoryId);
-      toast.success("Déchet trié avec succès !");
-      setSelectedImage(null);
+      const result = await wasteManagementService.addWaste(data.categoryId, selectedImage);
+      console.log('Résultat de l\'ajout:', result);
+      
+      if (result) {
+        await loadCategoryItems(data.categoryId);
+        toast.success("Déchet trié avec succès !");
+        setSelectedImage(null);
+      }
     } catch (error) {
-      toast.error("Erreur lors de l'ajout du déchet");
+      console.error('Erreur lors de l\'ajout:', error);
+      if (error instanceof Error) {
+        toast.error(`Erreur lors de l'ajout du déchet: ${error.message}`);
+      } else {
+        toast.error("Une erreur inattendue s'est produite");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -134,6 +158,9 @@ export default function TriDechets() {
               register={register}
               errors={errors}
               required
+              {...register("categoryId", {
+                required: "Veuillez sélectionner une catégorie"
+              })}
             >
               <option value="">Sélectionnez une catégorie</option>
               {categories.map((category) => (

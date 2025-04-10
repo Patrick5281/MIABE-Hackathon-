@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import { Box } from '@/ui/design-system/box/box';
 import { Typography } from '@/ui/design-system/typography/typography';
 import { Button } from '@/ui/design-system/button/button';
 import Image from 'next/image';
