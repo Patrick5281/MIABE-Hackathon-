@@ -53,47 +53,10 @@ export const ProfilStepFormEntreprise = ({
     getCurrentStep,
     onNext
 }: ProfilStepFormEntrepriseProps) => {
-    const { register, formState: { errors } } = useForm();
-    const [formData, setFormData] = useState<EntrepriseFormData>({
-        nomEntreprise: "",
-        siret: "",
-        adresse: "",
-        codePostal: "",
-        ville: "",
-        secteurActivite: "",
-        tailleEntreprise: "",
-        responsableNom: "",
-        responsablePrenom: "",
-        responsableEmail: "",
-        responsableTelephone: "",
-    });
+    const { register, handleSubmit, formState: { errors } } = useForm<EntrepriseFormData>();
 
-    const [logo, setLogo] = useState<File | null>(null);
-    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
-
-    const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            setLogo(file);
-            const url = URL.createObjectURL(file);
-            setPreviewUrl(url);
-        }
-    };
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        onNext({
-            ...formData,
-            logo: logo || undefined
-        });
+    const onSubmit = (data: EntrepriseFormData) => {
+        onNext(data);
     };
 
     return (
@@ -119,64 +82,54 @@ export const ProfilStepFormEntreprise = ({
                                 Veuillez renseigner les informations de votre entreprise pour finaliser votre inscription.
                             </Typography>
 
-                            <form onSubmit={handleSubmit} className="space-y-4">
+                            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                                 <div className="grid grid-cols-2 gap-4">
                                     <Input
+                                        id="nomEntreprise"
                                         label="Nom de l'entreprise"
-                                        name="nomEntreprise"
-                                        value={formData.nomEntreprise}
-                                        onChange={handleChange}
-                                        required
                                         register={register}
                                         errors={errors}
+                                        required
                                     />
                                     <Input
+                                        id="siret"
                                         label="Numéro SIRET"
-                                        name="siret"
-                                        value={formData.siret}
-                                        onChange={handleChange}
-                                        required
                                         register={register}
                                         errors={errors}
+                                        required
                                     />
                                 </div>
 
                                 <Input
+                                    id="adresse"
                                     label="Adresse"
-                                    name="adresse"
-                                    value={formData.adresse}
-                                    onChange={handleChange}
-                                    required
                                     register={register}
                                     errors={errors}
+                                    required
                                 />
 
                                 <div className="grid grid-cols-2 gap-4">
                                     <Input
+                                        id="codePostal"
                                         label="Code postal"
-                                        name="codePostal"
-                                        value={formData.codePostal}
-                                        onChange={handleChange}
-                                        required
                                         register={register}
                                         errors={errors}
+                                        required
                                     />
                                     <Input
+                                        id="ville"
                                         label="Ville"
-                                        name="ville"
-                                        value={formData.ville}
-                                        onChange={handleChange}
-                                        required
                                         register={register}
                                         errors={errors}
+                                        required
                                     />
                                 </div>
 
                                 <Select
+                                    id="secteurActivite"
                                     label="Secteur d'activité"
-                                    name="secteurActivite"
-                                    value={formData.secteurActivite}
-                                    onChange={handleChange}
+                                    register={register}
+                                    errors={errors}
                                     required
                                 >
                                     <option value="">Sélectionnez un secteur</option>
@@ -188,10 +141,10 @@ export const ProfilStepFormEntreprise = ({
                                 </Select>
 
                                 <Select
+                                    id="tailleEntreprise"
                                     label="Taille de l'entreprise"
-                                    name="tailleEntreprise"
-                                    value={formData.tailleEntreprise}
-                                    onChange={handleChange}
+                                    register={register}
+                                    errors={errors}
                                     required
                                 >
                                     <option value="">Sélectionnez une taille</option>
@@ -208,51 +161,44 @@ export const ProfilStepFormEntreprise = ({
 
                                 <div className="grid grid-cols-2 gap-4">
                                     <Input
+                                        id="responsableNom"
                                         label="Nom"
-                                        name="responsableNom"
-                                        value={formData.responsableNom}
-                                        onChange={handleChange}
-                                        required
                                         register={register}
                                         errors={errors}
+                                        required
                                     />
                                     <Input
+                                        id="responsablePrenom"
                                         label="Prénom"
-                                        name="responsablePrenom"
-                                        value={formData.responsablePrenom}
-                                        onChange={handleChange}
-                                        required
                                         register={register}
                                         errors={errors}
+                                        required
                                     />
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-4">
                                     <Input
+                                        id="responsableEmail"
                                         label="Email"
-                                        name="responsableEmail"
                                         type="email"
-                                        value={formData.responsableEmail}
-                                        onChange={handleChange}
-                                        required
                                         register={register}
                                         errors={errors}
+                                        required
                                     />
                                     <Input
+                                        id="responsableTelephone"
                                         label="Téléphone"
-                                        name="responsableTelephone"
-                                        value={formData.responsableTelephone}
-                                        onChange={handleChange}
-                                        required
                                         register={register}
                                         errors={errors}
+                                        required
                                     />
                                 </div>
 
                                 <Upload
+                                    id="logo"
                                     label="Logo de l'entreprise"
-                                    onChange={handleLogoChange}
-                                    previewUrl={previewUrl}
+                                    register={register}
+                                    errors={errors}
                                 />
                             </form>
                         </div>
@@ -270,13 +216,7 @@ export const ProfilStepFormEntreprise = ({
             </div>
 
             <OnboardingFooter
-                next={() => {
-                    const form = document.querySelector('form');
-                    if (form) {
-                        const event = new Event('submit') as unknown as React.FormEvent<HTMLFormElement>;
-                        handleSubmit(event);
-                    }
-                }}
+                next={handleSubmit(onSubmit)}
                 isFirstStep={isFirstStep}
                 isFinalStep={isFinalStep}
             />

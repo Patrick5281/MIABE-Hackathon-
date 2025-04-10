@@ -22,20 +22,15 @@ export const Footer = () => {
         <div className="py-8 bg-green">
             <Container className="flex justify-between pt-16">
                 <div className="flex flex-col items-center gap-1">
-                    <Typography variant="caption1" theme="white" weight="medium">
-                        Formation gratuite
-                    </Typography>
-                    <Typography variant="caption3" theme="gray">
-                        Abonne toi à la chaine
-                    </Typography>
-                    <a href="https://youtube.com/@remontemonkey" target="_blank">
+                <a href="https://youtube.com/@remontemonkey" target="_blank">
                         <Image
-                            src="assets/svg/YTB.svg"
+                            src="assets/images/Logo.png"
                             width={229}
                             height={216}
                             alt="Remote Monkets | Youtube"
                         />
                     </a>
+                   
                 </div>
                 <div className="flex gap-7">
                     {footerNavigationList}

@@ -5,44 +5,43 @@ import { Textarea } from "@/ui/design-system/forms/textarea";
 interface Props {
     form: FormsType;
 }
+
 export const ProfileStepForm = ({ form }: Props) => {
     const { register, errors, isLoading } = form;
 
     return (
         <form className="w-full max-w-md space-y-4">
             <Input
+                id="displayName"
                 label="Nom d'utilisateur"
-                isLoading={isLoading}
-                placeholder="john doe"
                 type="text"
                 register={register}
                 errors={errors}
-                errorMsg="Tu dois renseigner un pseudo"
-                id="displayName"
                 required={true}
+                placeholder="john doe"
+                isLoading={isLoading}
             />
 
             <Input 
+                id="expertise"
                 label="Expertise"
-                isLoading={isLoading}
-                placeholder="Développeur front-end React freelance"
                 type="text"
                 register={register}
                 errors={errors}
-                errorMsg="Tu dois renseigner ton Expertise"
-                id="expertise"
                 required={true}
+                placeholder="Développeur front-end React freelance"
+                isLoading={isLoading}
             />
 
             <Textarea 
+                id="biography"
                 label="Biographie"
-                isLoading={isLoading}
-                placeholder="Indique une breve description de toi"
-                rows={5}
                 register={register}
                 errors={errors}
-                id="biography"
                 required={false}
+                placeholder="Indique une breve description de toi"
+                rows={5}
+                isLoading={isLoading}
             />
         </form>
     );

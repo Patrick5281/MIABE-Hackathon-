@@ -24,8 +24,8 @@ export const OnboardingContainer = () => {
     },
     {
       id: 3,
-      label: "Questionnaire",
-      component: { step: QuestionnaireStep },
+      label: "Avatar",
+      component: { step: AvatarStep },
     },
     {
       id: 4,
@@ -64,7 +64,7 @@ export const OnboardingContainer = () => {
     <OnboardingProvider>
       <OnboardingView
         stepsList={stepsList}
-        getCurrentStep={getCurrentStep}
+        getCurrentStep={getCurrentStep()}
         next={next}
         prev={prev}
         isFirstStep={isFirstStep}

@@ -4,16 +4,16 @@ export interface BaseComponentProps {
     isFirstStep: () => boolean;
     isFinalStep: () => boolean;
     stepsList: onboardingStepsListInterface[];
-    getCurrentStep: () => onboardingStepsListInterface | undefined;
-  }
-  
-  export interface onboardingStepsListInterface {
+    getCurrentStep: onboardingStepsListInterface | undefined;
+}
+
+export interface onboardingStepsListInterface {
     id: number;
     label: string;
     component: {
-      step: React.ComponentType<BaseComponentProps>;
+        step: React.ComponentType<BaseComponentProps>;
     };
-  }
+}
 
 export interface UserPreferences {
   fullName: string;
