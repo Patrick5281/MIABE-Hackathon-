@@ -26,11 +26,11 @@ export const WasteCard: React.FC<WasteCardProps> = ({
   return (
     <Tooltip content={category.description}>
       <div
-        className={`relative cursor-pointer transition-all duration-200 rounded-lg p-4 ${
+        className={`relative cursor-pointer card-hover rounded-lg p-6 ${
           isSelected
-            ? 'ring-2 ring-offset-2 ring-primary'
-            : 'hover:shadow-lg'
-        } bg-${category.color}-50`}
+            ? 'ring-2 ring-offset-2 ring-primary shadow-lg'
+            : 'hover:shadow-xl'
+        } bg-${category.color}-50 transition-all duration-300`}
         onClick={onClick}
       >
         <div className="flex flex-col items-center space-y-3">

@@ -34,10 +34,18 @@ export const Layout = ({ children, isDisplayBreadcrumbs, withSidebar, sessionSta
 
     return (
         <Session sessionStatus={sessionStatus}>
-            <Navigation /> 
-            {isDisplayBreadcrumbs && <Breadcrumbs />}
-            {view}
-            <Footer />
+            <div className="min-h-screen flex flex-col">
+                <Navigation className="glass-effect sticky top-0 z-50" />
+                <main className="flex-grow">
+                    {isDisplayBreadcrumbs && (
+                        <div className="bg-white/50 border-b">
+                            <Breadcrumbs className="py-2 px-4" />
+                        </div>
+                    )}
+                    <div className="animate-fade">{view}</div>
+                </main>
+                <Footer className="mt-auto" />
+            </div>
         </Session>
     );
 };
